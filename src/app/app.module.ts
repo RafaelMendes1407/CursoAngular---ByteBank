@@ -1,3 +1,4 @@
+import { HttpClientModule } from '@angular/common/http';
 import { NovaTransferenciaComponent } from './transferencia/nova-transferencia.component';
 import { NgModule } from '@angular/core';
 import { BrowserModule } from '@angular/platform-browser';
@@ -15,7 +16,8 @@ import { ExtratoComponent } from './extrato/extrato.component';
   ],
   imports: [
     BrowserModule,
-    FormsModule
+    FormsModule,
+    HttpClientModule
   ],
   providers: [],
   bootstrap: [AppComponent]

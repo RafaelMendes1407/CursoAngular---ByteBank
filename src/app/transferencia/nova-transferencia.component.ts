@@ -1,5 +1,7 @@
+import { Transferencia } from './../models/transferencia.model';
 import { EventEmitter } from '@angular/core';
 import { Component, Output } from '@angular/core';
+import { TransferenciaService } from '../services/transferencia.service';
 
 @Component({
   selector: 'app-nova-transferencia',
@@ -14,11 +16,15 @@ export class NovaTransferenciaComponent {
   destino: number = 0;
   data: number = Date.now();
 
+  constructor(private service: TransferenciaService){
+
+  }
+
   transferir() {
-    console.log("Solicitado nova transferência");
-    const transferencia = { valor: this.valor, destino: this.destino, data: this.data};
-    this.aoTransferir.emit(transferencia);
-    this.limparCampos();
+    const transferencia: Transferencia = { valor: this.valor, destino: this.destino, data: this.data};
+    this.service.adicionar(transferencia).subscribe(resultado => {
+      this.limparCampos();
+    }, (error) => console.log(error));
   }
 
   limparCampos(){
